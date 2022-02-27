@@ -8,13 +8,8 @@
             <div class="form-group row">
                 <label class="col-2 col-form-label">Nombre</label>
                 <div class="col">
-                    <input 
-                    class="form-control" 
-                    type="text" 
-                    placeholder="Nombre"
-                    formControlName="nombre"
-                    [class.is-invalid]="campoNoValido('nombre')"
-                    >
+                    <input class="form-control" type="text" placeholder="Nombre" formControlName="nombre"
+                        [class.is-invalid]="campoNoValido('nombre')">
                     <small *ngIf="campoNoValido('nombre')">
                         Ingrese 5 letras
                     </small>
@@ -26,15 +21,10 @@
                 <label class="col-2 col-form-label">Apellido</label>
                 <div class="col">
 
-                    <input 
-                    class="form-control" 
-                    type="text" 
-                    placeholder="Apellido"
-                    formControlName="apellido"
-                    [class.is-invalid]="campoNoValido('apellido')"
-                    >
+                    <input class="form-control" type="text" placeholder="Apellido" formControlName="apellido"
+                        [class.is-invalid]="campoNoValido('apellido')">
                     <small *ngIf="campoNoValido('nombre')">
-                        Apellido obligatorio 
+                        Apellido obligatorio
                     </small>
                 </div>
             </div>
@@ -42,45 +32,63 @@
         </div>
         <br>
         <div class="form-group row">
+            <label class="col-2 col-form-label">Contraseña</label>
+            <div class="col">
+
+                <input class="form-control" type="password" placeholder="Contraseña" formControlName="pass1"
+                    [class.is-invalid]="campoNoValido('pass1')">
+                <small *ngIf="pass2NoValido">
+                    Contraseña no valida
+                </small>
+            </div>
+        </div>
+        <br>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Repita Contraseña</label>
+            <div class="col">
+
+                <input class="form-control" type="password" placeholder="Repita Contraseña" formControlName="pass2"
+                    [class.is-invalid]="pass2NoValido">
+                <small *ngIf="false">
+                    Contraseña no valida
+                </small>
+            </div>
+        </div>
+        <div class="form-group row">
             <label class="col-2 col-form-label">Correo</label>
             <div class="col">
 
-                <input 
-                 class="form-control" 
-                 type="email"
-                 placeholder="Correo electrónico"
-                 formControlName="correo"
-                 [class.is-invalid]="campoNoValido('correo')"
-                 >
-                 <small *ngIf="campoNoValido('correo')">
+                <input class="form-control" type="email" placeholder="Correo electrónico" formControlName="correo"
+                    [class.is-invalid]="campoNoValido('correo')">
+                <small *ngIf="campoNoValido('correo')">
                     Correo no valido
+                </small>
+            </div>
+        </div>
+        <br>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Usuario</label>
+            <div class="col">
+
+                <input class="form-control" type="text" placeholder="Ingrese su usuario" formControlName="usuario"
+                    [class.is-invalid]="UsuarioNoValido()">
+                <small *ngIf="UsuarioNoValido()">
+                    Usuario no valido
                 </small>
             </div>
         </div>
         <br>
         <div class="form-group row" formGroupName="direccion">
             <label class="col-2 col-form-label">Direcciónes</label>
-            <div class="form-row col"  style="display: flex;">
+            <div class="form-row col" style="display: flex;">
                 <div class="col">
-                    <input 
-                    type="text"
-                    class="form-control"
-                    placeholder="Districto"
-                    style="margin-right:10px;"
-                    formControlName="distrito"
-                    [class.is-invalid]="campoNoValido('direccion.distrito')"
-                     />
+                    <input type="text" class="form-control" placeholder="Districto" style="margin-right:10px;"
+                        formControlName="distrito" [class.is-invalid]="campoNoValido('direccion.distrito')" />
                 </div>
-                
+
                 <div class="col">
-                    <input 
-                    type="text"
-                    class="form-control"
-                    placeholder="Ciudad"
-                    style="margin-left: 10px;width: 98%;"
-                    formControlName="ciudad"
-                    [class.is-invalid]="campoNoValido('direccion.ciudad')"
-                     />
+                    <input type="text" class="form-control" placeholder="Ciudad" style="margin-left: 10px;width: 98%;"
+                        formControlName="ciudad" [class.is-invalid]="campoNoValido('direccion.ciudad')" />
                 </div>
             </div>
         </div>
@@ -96,20 +104,24 @@
                             <th>Borrar</th>
                         </tr>
                     </thead>
+
+                    <tbody formArrayName="pasatiempos">
+                        <tr *ngFor="let control of pasatiempos.controls; let i = index">
+                            <td>{{i+1}}</td>
+                            <td>
+                                <input class="form-control" type="text" [formControlName]="i" />
+                            </td>
+                            <td>
+                                <button class="btn btn-danger" type="button" (click)="borrarPasatiempo(i)">Borrar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                    
                 </table>
-                <tbody formArrayName="pasatiempos">
-                    <tr *ngFor="let control of pasatiempos.controls; let i = index">
-                        <td>{{i+1}}</td>
-                        <td>
-                            <input 
-                            class="form-control" 
-                            type="text"
-                            [formControlName]="i"
-                             />
-                        </td>
-                        <td></td>
-                    </tr>
-                </tbody>
+                <button class="btn btn-primary btn-block" type="button"d (click)="agregarPasatiempo()">
+                    +AGREGAR
+                </button>
+             
             </div>
         </div>
 
