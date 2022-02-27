@@ -1,0 +1,60 @@
+<form class="container" [formGroup]="formData">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        Validacion fecha - desde | hasta
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-grid-list cols="2" rowHeight="4:1" rowWidth="3:2"> 
+        <mat-grid-tile>
+          <mat-form-field>
+            <mat-label>Fecha desde</mat-label>
+            <input autocomplete="off"  formControlName="toDate" matInput [matDatepicker]="picker" placeholder="to Date"> 
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field>
+            <mat-label>Fecha hasta</mat-label>
+            <input autocomplete="off"  formControlName="fromDate" matInput [matDatepicker]="picker2" placeholder="from Date">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="2" rowHeight="4:1" rowWidth="3:2">
+        <button [disabled]="formData.invalid"   mat-stroked-button color="primary">Guardar</button>
+      </mat-grid-list>
+     
+
+    
+    </mat-card-content>
+  </mat-card> 
+ 
+</form>
+<br>
+<form class="container" [formGroup]="formData2">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        Validacion fecha - desde 
+      </mat-card-title>
+    </mat-card-header>
+    <mat-grid-list cols="2" rowHeight="4:1" rowWidth="3:2"> 
+      <mat-grid-tile>
+        <mat-form-field>
+          <mat-label>Fecha desde</mat-label>
+          <input autocomplete="off"  formControlName="toDate2" matInput [matDatepicker]="picker3" placeholder="to Date"> 
+          <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+          <mat-datepicker #picker3></mat-datepicker>
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <mat-grid-list cols="2" rowHeight="4:1" rowWidth="3:2">
+      <button [disabled]="formData2.invalid"   mat-stroked-button color="primary">Guardar</button>
+    </mat-grid-list>
+  </mat-card>
+
+</form>

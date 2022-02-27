@@ -1,0 +1,137 @@
+<div class="container">
+    <h4>Formularios <small>reactivo</small></h4>
+    <hr>
+    <form [formGroup]="forma" (ngSubmit)="gurdar()">
+
+        <div>
+
+            <div class="form-group row">
+                <label class="col-2 col-form-label">Nombre</label>
+                <div class="col">
+                    <input 
+                    class="form-control" 
+                    type="text" 
+                    placeholder="Nombre"
+                    formControlName="nombre"
+                    [class.is-invalid]="campoNoValido('nombre')"
+                    >
+                    <small *ngIf="campoNoValido('nombre')">
+                        Ingrese 5 letras
+                    </small>
+
+                </div>
+            </div>
+            <br>
+            <div class="form-group row">
+                <label class="col-2 col-form-label">Apellido</label>
+                <div class="col">
+
+                    <input 
+                    class="form-control" 
+                    type="text" 
+                    placeholder="Apellido"
+                    formControlName="apellido"
+                    [class.is-invalid]="campoNoValido('apellido')"
+                    >
+                    <small *ngIf="campoNoValido('nombre')">
+                        Apellido obligatorio 
+                    </small>
+                </div>
+            </div>
+
+        </div>
+        <br>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Correo</label>
+            <div class="col">
+
+                <input 
+                 class="form-control" 
+                 type="email"
+                 placeholder="Correo electrónico"
+                 formControlName="correo"
+                 [class.is-invalid]="campoNoValido('correo')"
+                 >
+                 <small *ngIf="campoNoValido('correo')">
+                    Correo no valido
+                </small>
+            </div>
+        </div>
+        <br>
+        <div class="form-group row" formGroupName="direccion">
+            <label class="col-2 col-form-label">Direcciónes</label>
+            <div class="form-row col"  style="display: flex;">
+                <div class="col">
+                    <input 
+                    type="text"
+                    class="form-control"
+                    placeholder="Districto"
+                    style="margin-right:10px;"
+                    formControlName="distrito"
+                    [class.is-invalid]="campoNoValido('direccion.distrito')"
+                     />
+                </div>
+                
+                <div class="col">
+                    <input 
+                    type="text"
+                    class="form-control"
+                    placeholder="Ciudad"
+                    style="margin-left: 10px;width: 98%;"
+                    formControlName="ciudad"
+                    [class.is-invalid]="campoNoValido('direccion.ciudad')"
+                     />
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <label class="col-2 col-form-label">Pasatiempo</label>
+            <div class="col">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Pasatiempo</th>
+                            <th>Borrar</th>
+                        </tr>
+                    </thead>
+                </table>
+                <tbody formArrayName="pasatiempos">
+                    <tr *ngFor="let control of pasatiempos.controls; let i = index">
+                        <td>{{i+1}}</td>
+                        <td>
+                            <input 
+                            class="form-control" 
+                            type="text"
+                            [formControlName]="i"
+                             />
+                        </td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </div>
+        </div>
+
+        <div class="row">
+            <label class="col-2 col-form-label">&nbsp;</label>
+            <div class="input-group col-md-8">
+                <button type="submit" class="btn btn-outline-primary">
+                    Guardar
+                </button>
+            </div>
+        </div>
+
+    </form>
+
+
+</div>
+<hr>
+<pre>
+    Estado del formulario {{forma.valid}}
+    <br>
+    Status: {{forma.status}}
+</pre>
+<pre>
+    {{forma.value | json}}
+</pre>
